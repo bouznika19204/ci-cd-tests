@@ -25,14 +25,10 @@ jobs:
       # On lance les tests
       - run: npm test
 
-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@main #consider using pin for dependabot auto update
-
-      - name: Create deployment
-        uses: sws2apps/render-deployment@main #consider using pin for dependabot auto update
+      - uses: ttskch/render-deploy@v1.0.0
         with:
-          serviceId: rnd_9b0pHtaPqrFHFn5IHlut5thd2cS7
-          apiKey: srv-d5pie5fgi27c73fob2bg
+          api-key: rnd_9b0pHtaPqrFHFn5IHlut5thd2cS7
+          service-id: srv-d5pie5fgi27c73fob2bg
