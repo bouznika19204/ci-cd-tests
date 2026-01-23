@@ -1,11 +1,31 @@
-name: Trigger Render Deployment
+name: Ma première CI/CD
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+
 jobs:
-  main:
-    name: Deploy to Render
+  build:
+    # On utilise l'Ubuntu latest pour la build
+    runs-on: ubuntu-latest
+
+    steps:
+      # On récupère le code via le git
+      - uses: actions/checkout@v3
+      # On utilise/install Node.js 20.x
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x 
+          cache: 'npm'
+      # On installe les dépendances
+      - run: npm ci
+      # On lance le linter
+      - run: npm run lint
+      # On lance les tests
+      - run: npm test
+
+deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -14,5 +34,5 @@ jobs:
       - name: Create deployment
         uses: sws2apps/render-deployment@main #consider using pin for dependabot auto update
         with:
-          serviceId: srv-d5pie5fgi27c73fob2bg
-          apiKey: rnd_9b0pHtaPqrFHFn5IHlut5thd2cS7
+          serviceId: rnd_9b0pHtaPqrFHFn5IHlut5thd2cS7
+          apiKey: srv-d5pie5fgi27c73fob2bg
