@@ -1,7 +1,7 @@
 // Permet de tester l'API avec supertest
 const request = require('supertest')
 // Permet de charger l'application principale
-const app = require('../SRC/app')
+const app = require('../src/app')
 
 // Définit le test pour l'API Endpoints
 describe('API Endpoints', () => {
