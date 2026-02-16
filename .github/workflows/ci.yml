@@ -44,7 +44,7 @@ jobs:
           curl -H "Content-Type: application/json" \
           -X POST \
           -d "{\"content\": \"❌ CI FAILED - Repo ${{ github.repository }} - Tag ${{ github.ref_name }}\"}" \
-          ${{ secrets.DISCORD_WEBHOOK }}
+          ${{ secrets.DISCORD_WEBHOOK}}
 
   deploy:
     runs-on: ubuntu-latest
